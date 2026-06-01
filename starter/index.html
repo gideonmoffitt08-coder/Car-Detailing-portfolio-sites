@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apex Auto Detail — Starter</title>
+<meta name="description" content="Apex Auto Detail — professional exterior wash, interior vacuum, and window cleaning. Book your shine today." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --charcoal: #1A1A2E;
+    --silver: #C0C0C0;
+    --black: #0D0D0D;
+    --red: #C0392B;
+    --cream: #F8F6F2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--black);
+    color: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; letter-spacing: 2px; }
+  .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+  .accent-line { width: 60px; height: 3px; background: var(--red); border-radius: 2px; margin: 1rem 0 2rem; }
+
+  /* NAV */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(192,192,192,0.12);
+  }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 3px; color: var(--cream); }
+  .logo span { color: var(--red); }
+  nav ul { display: flex; gap: 1.75rem; list-style: none; }
+  nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; transition: color 0.3s; }
+  nav a:hover { color: var(--red); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at center, rgba(26,26,46,0.9), var(--black) 75%);
+    padding: 3rem 1rem;
+    overflow: hidden;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 7rem);
+    line-height: 0.95;
+    background: linear-gradient(120deg, var(--silver), var(--cream) 50%, var(--silver));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p.tag { color: var(--silver); letter-spacing: 4px; text-transform: uppercase; font-size: 0.9rem; margin-top: 1rem; }
+  .hero .cta {
+    display: inline-block; margin-top: 2rem;
+    background: var(--red); color: #fff; text-decoration: none;
+    padding: 0.9rem 2.25rem; border-radius: 6px;
+    text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.85rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .hero .cta:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(192,57,43,0.45); }
+
+  /* CAR SVG + shine animation */
+  .car-wrap { position: relative; width: 100%; max-width: 620px; margin: 2.5rem auto 0; }
+  .car-svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 25px rgba(0,0,0,0.7)); }
+  .shine-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.55) 48%, transparent 60%);
+    mix-blend-mode: screen;
+    transform: translateX(-100%);
+    animation: shineSweep 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes shineSweep {
+    0%, 100% { transform: translateX(-100%); }
+    45%, 55% { transform: translateX(100%); }
+  }
+  .gloss-body { animation: glossPulse 5s ease-in-out infinite; }
+  @keyframes glossPulse {
+    0%, 100% { stop-color: #3a3a55; }
+    50% { stop-color: #565680; }
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 0; }
+  .section-head { text-align: center; margin-bottom: 3rem; }
+  .section-head h2 { font-size: clamp(2.2rem, 6vw, 3.5rem); color: var(--cream); }
+  .section-head .accent-line { margin: 1rem auto 0; }
+  .section-head p { color: var(--silver); font-weight: 300; max-width: 520px; margin: 0.75rem auto 0; }
+
+  .services { background: linear-gradient(180deg, var(--black), var(--charcoal)); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.75rem; }
+  .service-card {
+    background: linear-gradient(160deg, rgba(26,26,46,0.9), rgba(13,13,13,0.95));
+    border: 1px solid rgba(192,192,192,0.15);
+    border-radius: 12px; padding: 2.25rem 1.75rem; text-align: center;
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+  }
+  .service-card:hover { transform: translateY(-8px); border-color: var(--red); box-shadow: 0 18px 38px rgba(0,0,0,0.55); }
+  .service-icon { width: 56px; height: 56px; margin: 0 auto 1.25rem; color: var(--red); }
+  .service-card h3 { font-size: 1.8rem; color: var(--silver); margin-bottom: 0.5rem; }
+  .service-card p { font-weight: 300; color: rgba(248,246,242,0.75); font-size: 0.95rem; }
+
+  /* CONTACT */
+  .contact { background: var(--charcoal); text-align: center; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 1rem; }
+  .contact-item { padding: 1.5rem; }
+  .contact-item .ci-icon { width: 40px; height: 40px; margin: 0 auto 0.75rem; color: var(--red); }
+  .contact-item h3 { color: var(--silver); font-size: 1.5rem; }
+  .contact-item p, .contact-item a { color: var(--cream); font-weight: 300; text-decoration: none; }
+  .contact-item a:hover { color: var(--red); }
+
+  footer.site-footer { background: var(--black); text-align: center; padding: 2rem 0; color: rgba(248,246,242,0.45); font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid rgba(192,192,192,0.1); }
+
+  /* fade-in */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">APEX<span>.</span></div>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="tag">Premium Car Care</p>
+    <h1>Apex Auto Detail</h1>
+    <p class="tag">Shine that turns heads</p>
+    <a href="#contact" class="cta">Book a Detail</a>
+
+    <div class="car-wrap">
+      <svg class="car-svg" viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg" aria-label="Car silhouette">
+        <defs>
+          <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop class="gloss-body" offset="0%" stop-color="#3a3a55" />
+            <stop offset="100%" stop-color="#0D0D0D" />
+          </linearGradient>
+          <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#9fb3c8" />
+            <stop offset="100%" stop-color="#2a2a3d" />
+          </linearGradient>
+        </defs>
+        <!-- body -->
+        <path d="M30 160 Q40 120 120 115 Q160 70 250 65 Q360 60 420 95 Q500 100 560 130 Q600 138 595 165 L590 175 Q588 185 575 185 L45 185 Q32 185 30 170 Z" fill="url(#bodyGrad)" stroke="#C0C0C0" stroke-width="1.2"/>
+        <!-- windows -->
+        <path d="M165 110 Q190 78 245 75 L255 108 Z" fill="url(#glassGrad)" opacity="0.85"/>
+        <path d="M270 75 Q345 72 400 100 L395 108 L272 108 Z" fill="url(#glassGrad)" opacity="0.85"/>
+        <!-- wheels -->
+        <circle cx="160" cy="185" r="34" fill="#0D0D0D" stroke="#C0C0C0" stroke-width="2"/>
+        <circle cx="160" cy="185" r="15" fill="#1A1A2E" stroke="#C0C0C0" stroke-width="1.5"/>
+        <circle cx="460" cy="185" r="34" fill="#0D0D0D" stroke="#C0C0C0" stroke-width="2"/>
+        <circle cx="460" cy="185" r="15" fill="#1A1A2E" stroke="#C0C0C0" stroke-width="1.5"/>
+        <!-- accent line -->
+        <path d="M70 150 L540 145" stroke="#C0392B" stroke-width="2" opacity="0.8"/>
+      </svg>
+      <div class="shine-overlay"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Our Services</h2>
+        <div class="accent-line"></div>
+        <p>Meticulous care for every surface. Simple, effective, and always spotless.</p>
+      </div>
+      <div class="grid">
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M12 3v2M5 7l1.5 1.5M19 7l-1.5 1.5"/><path d="M4 16c2 2 4 2 8 2s6 0 8-2"/><path d="M7 20l1-2M12 20v-2M17 20l-1-2"/></svg>
+          <h3>Exterior Wash</h3>
+          <p>Hand-applied foam bath, contact-free rinse, and a streak-free dry that leaves paint glossy and protected.</p>
+        </div>
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M6 9V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M7 18v2M17 18v2"/></svg>
+          <h3>Interior Vacuum</h3>
+          <p>Deep extraction of carpets, mats, and seats. Every crevice cleared of dust, crumbs, and debris.</p>
+        </div>
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/><path d="M14 13l3 3"/></svg>
+          <h3>Window Clean</h3>
+          <p>Crystal-clear glass inside and out, treated for a smudge-free, glare-reducing finish on every pane.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Get In Touch</h2>
+        <div class="accent-line"></div>
+        <p>Ready to make your car shine? Reach out and we'll get you on the schedule.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item reveal">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <h3>Phone</h3>
+          <p><a href="tel:+15551234567">(555) 123-4567</a></p>
+        </div>
+        <div class="contact-item reveal">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          <h3>Email</h3>
+          <p><a href="mailto:hello@apexautodetail.com">hello@apexautodetail.com</a></p>
+        </div>
+        <div class="contact-item reveal">
+          <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h3>Location</h3>
+          <p>Phoenix, Arizona</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    © 2026 Apex Auto Detail · Phoenix, AZ · Starter Demo
+  </footer>
+
+  <script>
+    // Simple fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apex Auto Detail — Demo Selector</title>
+<meta name="description" content="Choose a demo tier for Apex Auto Detail: Starter, Standard, or Premium." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --charcoal: #1A1A2E;
+    --silver: #C0C0C0;
+    --black: #0D0D0D;
+    --red: #C0392B;
+    --cream: #F8F6F2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Raleway', sans-serif;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(192,57,43,0.10), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(192,192,192,0.07), transparent 45%),
+      var(--black);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.25rem;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 9vw, 6rem);
+    letter-spacing: 4px;
+    line-height: 1;
+    background: linear-gradient(120deg, var(--silver), var(--cream), var(--silver));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+  .tagline {
+    color: var(--silver);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    text-align: center;
+  }
+  .subtitle {
+    color: rgba(248,246,242,0.55);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 540px;
+  }
+  .accent-line {
+    width: 70px;
+    height: 3px;
+    background: var(--red);
+    margin: 1.25rem auto 2rem;
+    border-radius: 2px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, rgba(26,26,46,0.95), rgba(13,13,13,0.95));
+    border: 1px solid rgba(192,192,192,0.18);
+    border-radius: 14px;
+    padding: 2.25rem 1.75rem;
+    text-decoration: none;
+    color: var(--cream);
+    overflow: hidden;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -120%;
+    width: 60%; height: 100%;
+    background: linear-gradient(110deg, transparent, rgba(255,255,255,0.18), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.7s ease;
+  }
+  .card:hover { transform: translateY(-8px); border-color: var(--red); box-shadow: 0 20px 45px rgba(0,0,0,0.6); }
+  .card:hover::before { left: 130%; }
+  .tier-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: var(--silver);
+  }
+  .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--red);
+    margin: 0.25rem 0 1rem;
+  }
+  .card ul { list-style: none; margin-bottom: 1.75rem; flex-grow: 1; }
+  .card li {
+    font-weight: 300;
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(192,192,192,0.08);
+    color: rgba(248,246,242,0.8);
+  }
+  .card li::before { content: "▸ "; color: var(--red); }
+  .view-btn {
+    display: inline-block;
+    text-align: center;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--silver);
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .card:hover .view-btn { background: var(--red); border-color: var(--red); color: #fff; }
+  .featured { border-color: var(--red); }
+  .badge {
+    position: absolute;
+    top: 14px; right: -34px;
+    background: var(--red);
+    color: #fff;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    padding: 0.25rem 2.5rem;
+    transform: rotate(45deg);
+    text-transform: uppercase;
+  }
+  footer { margin-top: 3rem; color: rgba(248,246,242,0.4); font-size: 0.75rem; letter-spacing: 1px; text-align: center; }
+</style>
+</head>
+<body>
+  <p class="tagline">Apex Auto Detail</p>
+  <h1>Choose Your Demo</h1>
+  <div class="accent-line"></div>
+  <p class="subtitle">Three website tiers crafted for a luxury car detailing brand. Explore each build to see the difference in motion, polish, and depth.</p>
+
+  <div class="cards">
+    <a class="card" href="starter/index.html">
+      <span class="tier-name">Starter</span>
+      <span class="price">$749</span>
+      <ul>
+        <li>Animated hero silhouette</li>
+        <li>3 service cards</li>
+        <li>Fade-in on scroll</li>
+        <li>Contact info section</li>
+      </ul>
+      <span class="view-btn">View Demo</span>
+    </a>
+
+    <a class="card featured" href="standard/index.html">
+      <span class="badge">Popular</span>
+      <span class="tier-name">Standard</span>
+      <span class="price">$1,249</span>
+      <ul>
+        <li>Light-streak hero</li>
+        <li>5 services + testimonials</li>
+        <li>Contact form & map</li>
+        <li>Hamburger nav</li>
+      </ul>
+      <span class="view-btn">View Demo</span>
+    </a>
+
+    <a class="card" href="premium/index.html">
+      <span class="tier-name">Premium</span>
+      <span class="price">$2,499</span>
+      <ul>
+        <li>Cinematic particle hero</li>
+        <li>7 flip-card services</li>
+        <li>Before/after slider</li>
+        <li>Pricing, schema & more</li>
+      </ul>
+      <span class="view-btn">View Demo</span>
+    </a>
+  </div>
+
+  <footer>© 2026 Apex Auto Detail — Demo Showcase</footer>
+</body>
+</html>
